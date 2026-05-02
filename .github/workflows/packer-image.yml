@@ -28,6 +28,9 @@ jobs:
               "tenantId": "${{ secrets.ARM_TENANT_ID }}"
             }
 
+      - name: Set Azure Subscription
+        run: az account set --subscription ${{ secrets.ARM_SUBSCRIPTION_ID }}
+
       - name: Test Login
         run: az account show
 
