@@ -6,7 +6,9 @@ on:
       - main
 
 
-
+permissions:              # 👈 ADD THIS
+  id-token: write
+  contents: read
         #permissions:
         #  id-token: write     
         #  contents: read    
@@ -28,6 +30,9 @@ jobs:
           client-id: ${{ secrets.ARM_CLIENT_ID }}
           tenant-id: ${{ secrets.ARM_TENANT_ID }}
           subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+
+      - name: Test Login
+        run: az account show
 
       - name: Install Packer
         uses: hashicorp/setup-packer@v3
