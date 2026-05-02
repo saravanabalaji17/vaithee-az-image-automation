@@ -1,0 +1,20 @@
+- name: Install packages
+  apt:
+    name:
+      - nginx
+      - curl
+    state: present
+    update_cache: yes
+
+- name: Create config file
+  copy:
+    dest: /etc/myapp.conf
+    content: |
+      ENV=prod
+      VERSION=1.0
+
+- name: Enable nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
